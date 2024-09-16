@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<Todolist.Models.Entities.Tododataset>
+<h1>To Do List</h1>
+<a class="btn btn-primary" asp-controller="Home" asp-action="Add">Add Data</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>AddedOn</th>
+            <th>IsActive</th>
+            <th>UpdatedOn</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Data in Model)
+        {
+            <tr>
+                <td>@Data.Title</td>
+                <td>@Data.Description</td>
+                <td>
+                    @if (@Data.Status==true)
+                    {
+                        <p>Ongoing</p>
+                    }
+                    else
+                    {
+                        <p>Completed</p>
+                    }
+                </td>
+                <td>@Data.AddedOn</td>
+                <td>
+                    @if (@Data.IsActive == true)
+                    {
+                        <span class="dot" style="background-color:green;height:25px;width:25px;border-radius:50%; display:inline-block"></span>
+                    }
+                    else
+                    {
+                        <span class="dot" style="background-color:grey;height:25px;width:25px;border-radius:50%; display:inline-block"></span>
+                    }
+                </td>
+                <td>@Data.UpdatedOn</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@Data.Id">Edit</a>
+                </td>
+                <td>
+                    @if(Data.Status == true)
+                    {
+                        <form asp-controller="Home" asp-action="Completed" asp-route-id="@Data.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-primary">Completed</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-controller="Home" asp-action="Completed" asp-route-id="@Data.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-primary">Ongoing</button>
+                        </form>
+                    }
+                </td>
+                <td>
+                    @if (Data.IsActive == true)
+                    {
+                        <form asp-controller="Home" asp-action="Active" asp-route-id="@Data.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-primary">InActive</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-controller="Home" asp-action="Active" asp-route-id="@Data.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-primary">Active</button>
+                        </form>
+                    }
+                </td>
+                <td>
+                    <form asp-controller="Home" asp-action="Delete" asp-route-id="@Data.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
