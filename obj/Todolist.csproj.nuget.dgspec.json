@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ONC\\source\\repos\\Todolist\\Todolist\\Todolist.csproj": {}
+    "C:\\Users\\ONC\\source\\repos\\ToDoList\\Todolist\\Todolist.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ONC\\source\\repos\\Todolist\\Todolist\\Todolist.csproj": {
+    "C:\\Users\\ONC\\source\\repos\\ToDoList\\Todolist\\Todolist.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ONC\\source\\repos\\Todolist\\Todolist\\Todolist.csproj",
+        "projectUniqueName": "C:\\Users\\ONC\\source\\repos\\ToDoList\\Todolist\\Todolist.csproj",
         "projectName": "Todolist",
-        "projectPath": "C:\\Users\\ONC\\source\\repos\\Todolist\\Todolist\\Todolist.csproj",
+        "projectPath": "C:\\Users\\ONC\\source\\repos\\ToDoList\\Todolist\\Todolist.csproj",
         "packagesPath": "C:\\Users\\ONC\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\ONC\\source\\repos\\ToDoList\\Todolist\\obj\\",
         "projectStyle": "PackageReference",

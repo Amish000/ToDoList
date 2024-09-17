@@ -18,34 +18,38 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\ONC\source\repos\ToDoList\Todolist
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ONC/source/repos/Todolist/Todolist/Views/Home/Add.cshtml]
+[C:/Users/ONC/source/repos/ToDoList/Todolist/Views/Home/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ONC/source/repos/Todolist/Todolist/Views/Home/Edit.cshtml]
+[C:/Users/ONC/source/repos/ToDoList/Todolist/Views/Home/Bin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ONC/source/repos/ToDoList/Todolist/Views/Home/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ONC/source/repos/Todolist/Todolist/Views/Home/Index.cshtml]
+[C:/Users/ONC/source/repos/ToDoList/Todolist/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ONC/source/repos/Todolist/Todolist/Views/Shared/Error.cshtml]
+[C:/Users/ONC/source/repos/ToDoList/Todolist/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ONC/source/repos/Todolist/Todolist/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/ONC/source/repos/ToDoList/Todolist/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ONC/source/repos/Todolist/Todolist/Views/_ViewImports.cshtml]
+[C:/Users/ONC/source/repos/ToDoList/Todolist/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ONC/source/repos/Todolist/Todolist/Views/_ViewStart.cshtml]
+[C:/Users/ONC/source/repos/ToDoList/Todolist/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ONC/source/repos/Todolist/Todolist/Views/Shared/_Layout.cshtml]
+[C:/Users/ONC/source/repos/ToDoList/Todolist/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-xc2n0ht0rg

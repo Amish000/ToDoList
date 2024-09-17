@@ -11,7 +11,6 @@
             <th>Description</th>
             <th>Status</th>
             <th>AddedOn</th>
-            <th>IsActive</th>
             <th>UpdatedOn</th>
         </tr>
     </thead>
@@ -24,17 +23,6 @@
                 <td>
                     @if (@Data.Status==true)
                     {
-                        <p>Ongoing</p>
-                    }
-                    else
-                    {
-                        <p>Completed</p>
-                    }
-                </td>
-                <td>@Data.AddedOn</td>
-                <td>
-                    @if (@Data.IsActive == true)
-                    {
                         <span class="dot" style="background-color:green;height:25px;width:25px;border-radius:50%; display:inline-block"></span>
                     }
                     else
@@ -42,6 +30,8 @@
                         <span class="dot" style="background-color:grey;height:25px;width:25px;border-radius:50%; display:inline-block"></span>
                     }
                 </td>
+                <td>@Data.AddedOn</td>
+
                 <td>@Data.UpdatedOn</td>
                 <td>
                     <a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@Data.Id">Edit</a>
@@ -57,20 +47,6 @@
                     {
                         <form asp-controller="Home" asp-action="Completed" asp-route-id="@Data.Id" method="post" style="display:inline;">
                             <button type="submit" class="btn btn-primary">Ongoing</button>
-                        </form>
-                    }
-                </td>
-                <td>
-                    @if (Data.IsActive == true)
-                    {
-                        <form asp-controller="Home" asp-action="Active" asp-route-id="@Data.Id" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-primary">InActive</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <form asp-controller="Home" asp-action="Active" asp-route-id="@Data.Id" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-primary">Active</button>
                         </form>
                     }
                 </td>

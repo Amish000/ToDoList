@@ -17,7 +17,7 @@ namespace Todolist.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var Tododata = await _dbContext.Tododatasets.ToListAsync();
+            var Tododata = await _dbContext.Tododatasets.Where(t => t.IsActive).ToListAsync();
             return View(Tododata);
         }
         [HttpGet]
@@ -79,7 +79,7 @@ namespace Todolist.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> Active(Tododataset viewModel)
         {
             var Tododataset = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
@@ -94,19 +94,45 @@ namespace Todolist.Controllers
                 await _dbContext.SaveChangesAsync();
             }
             return RedirectToAction("Index", "Home");
-        }
+        }*/
         [HttpPost]
         public async Task<IActionResult> Delete(Tododataset viewModel)
         {
-            var Data = await _dbContext.Tododatasets.AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == viewModel.Id);
+            var Data = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
+            if (Data is not null)
+            {
+                Data.IsActive = false;
+                Data.DeletedOn = DateTime.Now;
+                await _dbContext.SaveChangesAsync();
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public async Task<IActionResult> Bin()
+        {
+            var Tododata = await _dbContext.Tododatasets.Where(t => !t.IsActive).ToListAsync();
+            return View(Tododata);
+        }
+        public async Task<IActionResult> Restore(Tododataset viewModel)
+        {
+            var Data = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
+            if(Data is not null)
+            {
+                Data.IsActive = true;
+                await _dbContext.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> PermanentDelete(Tododataset viewModel)
+        {
+            var Data = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
             if (Data is not null)
             {
                 _dbContext.Tododatasets.Remove(Data);
                 await _dbContext.SaveChangesAsync();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Bin");
         }
+            
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
