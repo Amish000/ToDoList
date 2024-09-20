@@ -79,22 +79,6 @@ namespace Todolist.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-        /*[HttpPost]
-        public async Task<IActionResult> Active(Tododataset viewModel)
-        {
-            var Tododataset = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
-            if (Tododataset.IsActive == true)
-            {
-                Tododataset.IsActive = false;
-                await _dbContext.SaveChangesAsync();
-            }
-            else
-            {
-                Tododataset.IsActive = true;
-                await _dbContext.SaveChangesAsync();
-            }
-            return RedirectToAction("Index", "Home");
-        }*/
         [HttpPost]
         public async Task<IActionResult> Delete(Tododataset viewModel)
         {
@@ -107,11 +91,13 @@ namespace Todolist.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+        [HttpGet]
         public async Task<IActionResult> Bin()
         {
             var Tododata = await _dbContext.Tododatasets.Where(t => !t.IsActive).ToListAsync();
             return View(Tododata);
         }
+        [HttpPost]
         public async Task<IActionResult> Restore(Tododataset viewModel)
         {
             var Data = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
@@ -122,6 +108,7 @@ namespace Todolist.Controllers
             }
             return RedirectToAction("Index");
         }
+        [HttpPost]
         public async Task<IActionResult> PermanentDelete(Tododataset viewModel)
         {
             var Data = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
