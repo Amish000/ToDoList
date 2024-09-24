@@ -39,6 +39,7 @@ namespace Todolist.Controllers
                 DeletedOn = null,
                 UpdatedOn = DateTime.Now,
             };
+            
             await _dbContext.AddAsync(Data);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -98,15 +99,15 @@ namespace Todolist.Controllers
             return View(Tododata);
         }
         [HttpPost]
-        public async Task<IActionResult> Restore(Tododataset viewModel)
+        public async Task<IActionResult> Restore(Guid id)
         {
-            var Data = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
+            var Data = await _dbContext.Tododatasets.FindAsync(id);
             if(Data is not null)
             {
                 Data.IsActive = true;
                 await _dbContext.SaveChangesAsync();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
         [HttpPost]
         public async Task<IActionResult> PermanentDelete(Tododataset viewModel)

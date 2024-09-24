@@ -26,7 +26,9 @@
                 <td>@Data.AddedOn</td>
                 <td>@Data.DeletedOn</td>
                 <td>
-                    <a class="btn btn-primary" asp-controller="Home" asp-action="Restore" asp-route-id="@Data.Id">Restore</a>
+                    <form asp-controller="Home" asp-action="Restore" asp-route-id="@Data.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-primary">Restore</button>
+                    </form>
                 </td>
                 <td>
                     <form asp-controller="Home" asp-action="PermanentDelete" asp-route-id="@Data.Id" method="post" style="display:inline;">
