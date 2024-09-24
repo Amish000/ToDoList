@@ -28,6 +28,10 @@ namespace Todolist.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddTodoViewModel viewModel)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
             var Data = new Tododataset
             {
                 Title = viewModel.Title,
@@ -39,7 +43,6 @@ namespace Todolist.Controllers
                 DeletedOn = null,
                 UpdatedOn = DateTime.Now,
             };
-            
             await _dbContext.AddAsync(Data);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction("Index");

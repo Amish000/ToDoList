@@ -3,6 +3,8 @@ using Todolist.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddMvc(options => options.MaxModelValidationErrors = 50);
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
