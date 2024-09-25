@@ -15,10 +15,15 @@ namespace Todolist.Controllers
             _dbContext = dbContext;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber)
         {
-            var Tododata = await _dbContext.Tododatasets.Where(t => t.IsActive).ToListAsync();
-            return View(Tododata);
+            int pageSize = 5;
+            var Tododata = _dbContext.Tododatasets
+                .Where(t => t.IsActive)
+                .AsNoTracking();
+
+            return View(await PaginatedListViewModel<Tododataset>
+                .CreateAsync(Tododata, pageNumber ?? 1, pageSize));
         }
         [HttpGet]
         public IActionResult Add()

@@ -1,9 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model List<Todolist.Models.Entities.Tododataset>
+@model PaginatedListViewModel<Todolist.Models.Entities.Tododataset>
+
 <h1>To Do List</h1>
+
 <a class="btn btn-primary" asp-controller="Home" asp-action="Add">Add Data</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -12,6 +15,7 @@
             <th>Status</th>
             <th>AddedOn</th>
             <th>UpdatedOn</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +25,7 @@
                 <td>@Data.Title</td>
                 <td>@Data.Description</td>
                 <td>
-                    @if (@Data.Status==true)
+                    @if (Data.Status == true)
                     {
                         <span class="dot" style="background-color:green;height:25px;width:25px;border-radius:50%; display:inline-block"></span>
                     }
@@ -31,33 +35,64 @@
                     }
                 </td>
                 <td>@Data.AddedOn</td>
-
                 <td>@Data.UpdatedOn</td>
                 <td>
-                    <a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@Data.Id">Edit</a>
-                </td>
-                <td>
-                    @if(Data.Status == true)
+                    <a class="btn btn-primary me-2 mb-2" asp-controller="Home" asp-action="Edit" asp-route-id="@Data.Id">Edit</a>
+                    @if (Data.Status == true)
                     {
                         <form asp-controller="Home" asp-action="Completed" asp-route-id="@Data.Id" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-primary">Completed</button>
+                            <button type="submit" class="btn btn-primary me-2 mb-2" style="width: 100px">Completed</button>
                         </form>
                     }
                     else
                     {
                         <form asp-controller="Home" asp-action="Completed" asp-route-id="@Data.Id" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-primary">OnGoing--</button>
+                            <button type="submit" class="btn btn-primary me-2 mb-2" style="width: 100px">OnGoing</button>
                         </form>
                     }
-                </td>
-                <td>
                     <form asp-controller="Home" asp-action="Delete" asp-route-id="@Data.Id" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger me-2 mb-2">Delete</button>
                     </form>
                 </td>
-
             </tr>
         }
     </tbody>
 </table>
 
+<!-- Pagination Controls -->
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        @if (Model.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)">Previous</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+        }
+
+        @for (var i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
+            </li>
+        }
+
+        @if (Model.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <span class="page-link">Next</span>
+            </li>
+        }
+    </ul>
+</nav>
