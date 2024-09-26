@@ -15,7 +15,7 @@ namespace Todolist.Controllers
             _dbContext = dbContext;
         }
         [HttpGet]
-        public async Task<IActionResult> Index(int? pageNumber)
+        public async Task<IActionResult> Index(int pageNumber=1)
         {
             int pageSize = 5;
             var Tododata = _dbContext.Tododatasets
@@ -23,7 +23,7 @@ namespace Todolist.Controllers
                 .AsNoTracking();
 
             return View(await PaginatedListViewModel<Tododataset>
-                .CreateAsync(Tododata, pageNumber ?? 1, pageSize));
+                .CreateAsync(Tododata, pageNumber, pageSize));
         }
         [HttpGet]
         public IActionResult Add()
@@ -54,14 +54,15 @@ namespace Todolist.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id, int pageindex)
         {
             var Tododataset = await _dbContext.Tododatasets.FindAsync(id);
             return View(Tododataset);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Tododataset viewModel)
+        public async Task<IActionResult> Edit(Tododataset viewModel, int pageindex)
         {
+            int pageNumber = pageindex;
             var Tododataset = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
             if (Tododataset is not null)
             {
@@ -70,11 +71,12 @@ namespace Todolist.Controllers
                 Tododataset.UpdatedOn = DateTime.Now;
                 await _dbContext.SaveChangesAsync();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", new { pageNumber});
         }
         [HttpPost]
-        public async Task<IActionResult> Completed(Tododataset viewModel)
+        public async Task<IActionResult> Completed(Tododataset viewModel, int pageindex)
         {
+            int pageNumber = pageindex;
             var Tododataset = await _dbContext.Tododatasets.FindAsync(viewModel.Id);
             if (Tododataset.Status == true)
             {
@@ -86,7 +88,7 @@ namespace Todolist.Controllers
                 Tododataset.Status=true;
                 await _dbContext.SaveChangesAsync();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", new {pageNumber});
         }
         [HttpPost]
         public async Task<IActionResult> Delete(Tododataset viewModel)
