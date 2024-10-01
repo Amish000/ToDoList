@@ -71,7 +71,7 @@ namespace Todolist.Controllers
                 Tododataset.UpdatedOn = DateTime.Now;
                 await _dbContext.SaveChangesAsync();
             }
-            return RedirectToAction("Index", new { pageNumber});
+            return RedirectToAction("Index", new {pageNumber});
         }
         [HttpPost]
         public async Task<IActionResult> Completed(Tododataset viewModel, int pageindex)
